@@ -16,6 +16,8 @@ Heuristic solution for solving max clique problem.
 ### Road Map
 
 - [ ] 4处**TODO**的修改，按照论文中的说明需要random选择元素
+【1.16更新 by许灵筠】在遍历修改边权值的同时实现了随机挑选v；
+                   尝试修改chooseSwapPair的TODO但是TLE了
 - [ ] 实现EWLS的升级版——EWCC算法
 - [ ] 对代码实现进行性能调优（施工中）
 - [ ] 调参工程：选择合适的`delta`和`maxSteps`

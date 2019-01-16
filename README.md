@@ -36,7 +36,7 @@ Heuristic solution for solving max clique problem.
 ##### 1. TSE:
 在每次迭代中， NuMVC首先选择具有最高dscore的顶点u∈C并将其移除。 之后，NuMVC 随机选择一个未覆盖边e，并选择e的满足一定的[条件](#1)的端点中dscore较大的点加入C中.
 ##### 2. 边权遗忘机制：
-每次迭代末尾会检查当前的权值平均$\bar{w}$如果达到某个阈值就要对所有边的权值进行减小，![](https://latex.codecogs.com/gif.download?w%20%28%20e%20%29%20%3A%20%3D%20%5Clfloor%20%5Crho%20%5Ccdot%20w%20%28%20e%20%29%20%5Crfloor)，这里![](https://latex.codecogs.com/gif.download?%5Crho%5Cin%280%2C1%29).
+每次迭代末尾会检查当前的权值平均$\bar{w}$如果达到某个阈值就要对所有边的权值进行减小，<a href="https://www.codecogs.com/eqnedit.php?latex=w(e):=\lfloor\rho\cdot&space;w(e)\rfloor" target="_blank"><img src="https://latex.codecogs.com/gif.latex?w(e):=\lfloor\rho\cdot&space;w(e)\rfloor" title="w(e):=\lfloor\rho\cdot w(e)\rfloor" /></a>，这里<a href="https://www.codecogs.com/eqnedit.php?latex=w(e):=\lfloor\rho\cdot&space;w(e)\rfloor" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\rho\in&space;(0,1)" title="\rho\in&space;(0,1)" /></a>.
 ##### 3. Configuration Checking(CC)机制
 说这个策略是为了解决循环搜索的问题，起到类似于禁忌搜索的作用。依靠ConfChange数组来进行检查：一开始对每个端点把ConfChange数组初始化为1，之后，当顶点v是从C中被删除时，confChange(v)被重置为0，并且当顶点v改变其状态(0到1、1到0)时，为每个z∈N(v)，即其相邻的点z，confChange(z)设置为1。原则是confchange为0的点是拒绝加入C中的。<span id='1'>之前TSE的第二阶段要满足的条件也就是</span>，这个端点的confchange状态需要为1(即伪代码15行).
 

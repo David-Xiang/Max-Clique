@@ -1,4 +1,4 @@
-/*
+9/*
  NOTE:
  1. We use EWLS to solve Minimal Vertex Cover of complement graph(补图) \bar G.
     MaxClique(G) = V(G) - MinimalVertexCover(\bar G)
@@ -10,7 +10,7 @@
  
  3.Please delete '#define _DEBUG' before submitting the code.
  
- Current Score: 146
+ Current Score: 149
  
  */
 
@@ -298,16 +298,22 @@ void EWLS(int delta, int maxSteps, Vertices& Cstar){
         if (u == 0 || v == 0){
             // this IF block corresponds to the ELSE block in Cai's Paper
             // update w(e) = w(e) + 1 for each e in L
-            for (list<Edge>::iterator i = L.begin(); i != L.end(); i++){
-                int from = (*i).from;
-                int to = (*i).to;
-                G[from][to]++;
-                G[to][from]++;
-            }
+           int randomL = (rand() % N); // pick random position of v
+			        for (list<Edge>::iterator i = L.begin(); i != L.end(); i++) {
+			            int from = (*i).from;
+				           int to = (*i).to;
+
+				           if (!randomL)
+					          v = (*i).from; // get v
+				           randomL--;
+
+				           G[from][to]++;
+				           G[to][from]++;
+			         }
             
-            // TODO: random chooose u and v
+            // TODO: random chooose u
             u = (*C.begin());
-            v = (*L.begin()).from;
+            // v = (*L.begin()).from;
         }
         
         tabuAdd = u;
